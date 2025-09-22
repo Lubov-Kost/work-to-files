@@ -1,14 +1,14 @@
 file = open('hw2/most.txt')
-a, b = map(int, file.readline().split())
+count_mas, count_numbers = map(int, file.readline().split())
 occurring_more = []
-for i in range(a):
+for i in range(count_mas):
     repeats = {}
     one_line = file.readline().split()
     flag = False
     for k in one_line:
         if k in repeats:
             repeats[k] += 1
-            if repeats[k] > b/2:
+            if repeats[k] > count_numbers/2:
                 occurring_more.append(int(k))
                 flag = True
                 break
