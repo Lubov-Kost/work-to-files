@@ -1,33 +1,33 @@
 file = open("hw2/graph.txt")
-count_degree, count_costae = map(int, file.readline().split())
+count_vertex, count_costae = map(int, file.readline().split())
 ligaments = {}
 roommates = {} 
 
-for i in range(1, count_degree + 1):
+for i in range(1, count_vertex + 1):
     vertex_str = str(i)
     ligaments[vertex_str] = 0
     roommates[vertex_str] = []
 
 for i in range(count_costae):
     costae = file.readline().split()
-    first_degrees = costae[0]
-    second_degrees = costae[1]
+    first_vertex = costae[0]
+    second_vertex = costae[1]
     
-    ligaments[first_degrees] += 1
-    ligaments[second_degrees] += 1
+    ligaments[first_vertex] += 1
+    ligaments[second_vertex] += 1
     
-    roommates[first_degrees].append(second_degrees)
-    roommates[second_degrees].append(first_degrees)
+    roommates[first_vertex].append(second_vertex)
+    roommates[second_vertex].append(first_vertex)
 
 file.close()
 
 result = []
-for vertex in range(1, count_degree + 1):
-    vertex_str = str(vertex)
-    total = 0
-    for neighbor in roommates[vertex_str]:
-        total += ligaments[neighbor]
-    result.append(total)
+for i in range(1, count_vertex + 1):
+    vertex_str = str(i)
+    double_degree = 0
+    for roommate in roommates[vertex_str]:
+        double_degree += ligaments[roommate]
+    result.append(double_degree)
 
 result = ' '.join(map(str, result))
 
